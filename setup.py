@@ -2,7 +2,7 @@
 Author: wicsp wicspa@gmail.com
 Date: 2024-06-05 13:45:00
 LastEditors: wicsp wicspa@gmail.com
-LastEditTime: 2024-06-05 14:02:31
+LastEditTime: 2024-06-05 15:35:36
 FilePath: /wicspy/setup.py
 Description: 
 
@@ -28,7 +28,7 @@ setup(
     license="MIT",
     url="https://github.com/wicsp/wicspy",
     py_modules=['wicspy'],
-    install_requires=[],
+    install_requires=['loguru','requests'],
     classifiers=[
         "Topic :: Software Development :: Libraries :: Python Modules",
         "Programming Language :: Python",
