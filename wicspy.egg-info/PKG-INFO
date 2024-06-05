@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: wicspy
-Version: 0.0.2
+Version: 0.0.3
 Summary: A Python package for wicsp.
 Home-page: https://github.com/wicsp/wicspy
 Author: wicsp
@@ -13,6 +13,8 @@ Classifier: Programming Language :: Python :: 3.9
 Classifier: Programming Language :: Python :: Implementation :: CPython
 Description-Content-Type: text/markdown
 License-File: LICENSE
+Requires-Dist: loguru
+Requires-Dist: requests
 
 <!--
  * @Author: wicsp wicspa@gmail.com
