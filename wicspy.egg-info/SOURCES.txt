@@ -1,7 +1,6 @@
 LICENSE
 README.md
 setup.py
-wicspy.py
 wicspy.egg-info/PKG-INFO
 wicspy.egg-info/SOURCES.txt
 wicspy.egg-info/dependency_links.txt
