@@ -1,15 +1,17 @@
+#!python
+# -*- coding:utf-8 -*-
+
 '''
 Author: wicsp wicspa@gmail.com
 Date: 2024-06-05 13:45:00
 LastEditors: wicsp wicspa@gmail.com
-LastEditTime: 2024-06-05 17:38:08
+LastEditTime: 2024-06-06 16:19:43
 FilePath: /wicspy/setup.py
 Description: 
 
 Copyright (c) 2024 by wicsp, Licensed under the MIT license.
 '''
-#!python
-# -*- coding:utf-8 -*-
+
 from __future__ import print_function
 from setuptools import setup, find_packages
 import wicspy
@@ -29,6 +31,7 @@ setup(
     url="https://github.com/wicsp/wicspy",
     py_modules=['wicspy'],
     install_requires=['loguru', 'requests', 'tqdm'],
+    packages=find_packages(),
     classifiers=[
         "Topic :: Software Development :: Libraries :: Python Modules",
         "Programming Language :: Python",
