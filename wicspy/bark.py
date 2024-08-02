@@ -2,8 +2,8 @@
 Author: wicsp wicspa@gmail.com
 Date: 2024-06-05 14:53:56
 LastEditors: wicsp wicspa@gmail.com
-LastEditTime: 2024-06-05 16:10:06
-FilePath: /wicspy/bark.py
+LastEditTime: 2024-08-02 23:58:32
+FilePath: /wicspy/wicspy/bark.py
 Description: 
 
 Copyright (c) 2024 by wicsp, All Rights Reserved. 
@@ -18,7 +18,8 @@ BARK_ID = os.environ.get('BARK_ID')
 if not BARK_ID:
     raise ValueError("BARK_ID is not set in environment variables, Please add `export BARK_ID=your_bark_id` to your shell profile file, and then run `source ~/.bashrc` or `source ~/.zshrc` to take effect.")
 
-def bark(title:str, content:str, group:str = None, bark_id=BARK_ID) -> None:
+
+def bark(title: str, content: str, group: str = None, bark_id=BARK_ID) -> None:
     """send message via bark
 
     Args:
@@ -38,6 +39,4 @@ def bark(title:str, content:str, group:str = None, bark_id=BARK_ID) -> None:
         response.raise_for_status()  # 检查请求是否成功
         logger.info(f"提醒发送成功: {title} >{content}")
     except requests.exceptions.RequestException as e:
-        logger.error(f"提醒发送成功: {title} >{content}")
-
-
+        logger.error(f"提醒发送失败: {title} >{content} Exception: {e}")
