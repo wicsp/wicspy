@@ -1,14 +1,17 @@
-'''
+"""
 Author: wicsp wicspa@gmail.com
 Date: 2024-06-05 17:29:03
 LastEditors: wicsp wicspa@gmail.com
-LastEditTime: 2024-08-02 23:56:27
+LastEditTime: 2024-08-17 22:09:32
 FilePath: /wicspy/wicspy/__init__.py
-Description: 
+Description:
 
-Copyright (c) 2024 by wicsp, All Rights Reserved. 
-'''
-from .bark import *
-from .timer_tool import *
+Copyright (c) 2024 by wicsp, All Rights Reserved.
+"""
 
-__version__ = "0.0.9"
+from .bark import bark
+from .timer_tool import timing
+
+
+__all__ = ["bark", "timing"]
+__version__ = "0.0.10"
