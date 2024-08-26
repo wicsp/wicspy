@@ -19,9 +19,9 @@ fi
 COMMIT_MESSAGE=$1
 
 # 删除旧的构建文件
-rm -rf ./dist
-
 # 创建新的构建文件
+rye build --clean
+
 # 上传到 PyPI
 rye publish
 
