@@ -1,26 +1,28 @@
-'''
+"""
 Author: wicsp wicspa@gmail.com
 Date: 2024-06-05 14:53:56
 LastEditors: wicsp wicspa@gmail.com
-LastEditTime: 2024-08-26 17:02:48
+LastEditTime: 2024-08-26 18:29:20
 FilePath: /wicspy/src/wicspy/bark.py
-Description: 
+Description:
 
-Copyright (c) 2024 by wicsp, All Rights Reserved. 
-'''
+Copyright (c) 2024 by wicsp, All Rights Reserved.
+"""
 
 import os
 import requests
 from loguru import logger
 
 # 读取环境变量
-BARK_ID = os.environ.get('BARK_ID')
+BARK_ID = os.environ.get("BARK_ID")
 
 if not BARK_ID:
-    raise ValueError("BARK_ID is not set in environment variables, Please add `export BARK_ID=your_bark_id` to your shell profile file, and then run `source ~/.bashrc` or `source ~/.zshrc` to take effect.")
+    raise ValueError(
+        "BARK_ID is not set in environment variables, Please add `export BARK_ID=your_bark_id` to your shell profile file, and then run `source ~/.bashrc` or `source ~/.zshrc` to take effect."
+    )
 
 
-def bark(title: str, content: str, group: str = None, bark_id=BARK_ID) -> None:
+def bark(title: str, content: str, group: str | None = None, bark_id=BARK_ID) -> None:
     """send message via bark
 
     Args:
@@ -34,7 +36,7 @@ def bark(title: str, content: str, group: str = None, bark_id=BARK_ID) -> None:
     reminder_url = f"https://api.day.app/{bark_id}/{title}/{content}"
     params = {}
     if group:
-        params['group'] = group
+        params["group"] = group
     try:
         response = requests.post(reminder_url, params=params)
         response.raise_for_status()  # 检查请求是否成功
