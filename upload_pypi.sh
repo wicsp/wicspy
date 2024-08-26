@@ -3,7 +3,7 @@
  # @Author: wicsp wicspa@gmail.com
  # @Date: 2024-06-05 17:38:35
  # @LastEditors: wicsp wicspa@gmail.com
- # @LastEditTime: 2024-06-05 21:06:54
+ # @LastEditTime: 2024-08-26 18:03:00
  # @FilePath: /wicspy/upload_pypi.sh
  # @Description: 
  # 
@@ -19,15 +19,11 @@ fi
 COMMIT_MESSAGE=$1
 
 # 删除旧的构建文件
-rm -rf ./build
 rm -rf ./dist
-rm -rf ./wicspy.egg-info
 
 # 创建新的构建文件
-python setup.py sdist bdist_wheel
-
 # 上传到 PyPI
-python -m twine upload dist/*
+rye publish
 
 # 提交到 git
 git add .

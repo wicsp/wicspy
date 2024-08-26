@@ -1,12 +1,13 @@
 <!--
  * @Author: wicsp wicspa@gmail.com
- * @Date: 2024-06-05 13:44:52
+ * @Date: 2024-08-26 17:01:30
  * @LastEditors: wicsp wicspa@gmail.com
- * @LastEditTime: 2024-06-05 16:08:08
+ * @LastEditTime: 2024-08-26 17:03:45
  * @FilePath: /wicspy/README.md
  * @Description: 
  * 
  * Copyright (c) 2024 by wicsp, All Rights Reserved. 
 -->
-# A python package for wicsp.
+# wicspy
 
+# A python package for wicsp.

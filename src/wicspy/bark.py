@@ -2,12 +2,13 @@
 Author: wicsp wicspa@gmail.com
 Date: 2024-06-05 14:53:56
 LastEditors: wicsp wicspa@gmail.com
-LastEditTime: 2024-08-02 23:58:32
-FilePath: /wicspy/wicspy/bark.py
+LastEditTime: 2024-08-26 17:02:48
+FilePath: /wicspy/src/wicspy/bark.py
 Description: 
 
 Copyright (c) 2024 by wicsp, All Rights Reserved. 
 '''
+
 import os
 import requests
 from loguru import logger
