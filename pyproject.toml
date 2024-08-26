@@ -1,6 +1,6 @@
 [project]
 name = "wicspy"
-version = "0.1.1"
+dynamic = ["version"]
 description = "A Python package for wicsp."
 authors = [
     { name = "wicsp", email = "wicspa@gmail.com" }
@@ -21,6 +21,7 @@ build-backend = "hatchling.build"
 managed = true
 dev-dependencies = [
     "mypy>=1.11.2",
+    "ruff>=0.6.2",
 ]
 
 [tool.hatch.metadata]
@@ -28,3 +29,6 @@ allow-direct-references = true
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/wicspy"]
+
+[tool.hatch.version]
+path = "src/wicspy/__init__.py"

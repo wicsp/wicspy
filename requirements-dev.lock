@@ -23,6 +23,7 @@ mypy-extensions==1.0.0
     # via mypy
 requests==2.32.3
     # via wicspy
+ruff==0.6.2
 tomli==2.0.1
     # via mypy
 tqdm==4.66.5
