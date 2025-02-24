@@ -10,6 +10,8 @@
 #   universal: false
 
 -e file:.
+annotated-types==0.7.0
+    # via pydantic
 certifi==2024.7.4
     # via requests
 charset-normalizer==3.3.2
@@ -21,14 +23,25 @@ loguru==0.7.2
 mypy==1.11.2
 mypy-extensions==1.0.0
     # via mypy
+pydantic==2.10.4
+    # via sqlmodel
+pydantic-core==2.27.2
+    # via pydantic
 requests==2.32.3
     # via wicspy
 ruff==0.6.2
+sqlalchemy==2.0.36
+    # via sqlmodel
+sqlmodel==0.0.22
+    # via wicspy
 tomli==2.0.1
     # via mypy
 tqdm==4.66.5
     # via wicspy
 typing-extensions==4.12.2
     # via mypy
+    # via pydantic
+    # via pydantic-core
+    # via sqlalchemy
 urllib3==2.2.2
     # via requests
