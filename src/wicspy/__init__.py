@@ -1,22 +1,19 @@
 """
-Author: wicsp wicspa@gmail.com
-Date: 2024-08-26 17:01:30
-LastEditors: wicsp wicspa@gmail.com
-LastEditTime: 2024-08-26 18:19:56
-FilePath: /wicspy/src/wicspy/__init__.py
-Description:
-
-
-Copyright (c) 2024 by wicsp, All Rights Reserved.
+wicspy - 一个全面的 Python 工具库，提供各种实用功能和工具集合
 """
 
-from .bark import bark
-from .timer_tool import timing
+__version__ = "0.1.0"
 
+from importlib.metadata import version, PackageNotFoundError
 
-__all__ = ["bark", "timing"]
-__version__ = "0.1.3"
+try:
+    __version__ = version("wicspy")
+except PackageNotFoundError:
+    # 包未安装，使用默认版本号
+    pass
 
+# 为方便使用，导入常用的子模块
+from wicspy.config import get_config, set_config
 
 def hello() -> str:
-    return "Hello from wicsp!"
+    return "Hello from wicspy!"
