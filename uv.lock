@@ -895,7 +895,7 @@ wheels = [
 
 [[package]]
 name = "wicspy"
-version = "0.1.0"
+version = "0.1.8"
 source = { editable = "." }
 dependencies = [
     { name = "beautifulsoup4" },
@@ -918,11 +918,6 @@ dev = [
     { name = "ruff" },
 ]
 
-[package.dev-dependencies]
-dev = [
-    { name = "pdoc" },
-]
-
 [package.metadata]
 requires-dist = [
     { name = "beautifulsoup4", specifier = ">=4.12.0" },
@@ -941,9 +936,6 @@ requires-dist = [
     { name = "ruff", marker = "extra == 'dev'", specifier = ">=0.1.0" },
 ]
 provides-extras = ["dev"]
-
-[package.metadata.requires-dev]
-dev = [{ name = "pdoc", specifier = ">=15.0.1" }]
 
 [[package]]
 name = "win32-setctime"

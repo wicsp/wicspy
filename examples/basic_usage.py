@@ -5,7 +5,6 @@ wicspy 工具库基本用法示例
 
 import os
 import sys
-import time
 from rich.console import Console
 from rich.table import Table
 

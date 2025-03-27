@@ -1,6 +1,6 @@
 [project]
 name = "wicspy"
-version = "0.1.8"
+version = "0.1.9"
 description = "A comprehensive Python utilities library for various tasks"
 readme = "README.md"
 authors = [
@@ -39,7 +39,7 @@ dev = [
 ]
 
 [project.scripts]
-bark = "src.wicspy.utils.send_bark_message:bark"
+bark = "wicspy.scripts.bark:bark"
 
 [build-system]
 requires = ["hatchling"]
