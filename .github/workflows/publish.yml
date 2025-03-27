@@ -38,10 +38,10 @@ jobs:
         name: python-package-distributions
         path: dist/
 
-  upload:  # 上传到PyPI
+  publish-testpypi:  # 发布到 TestPyPI
     needs: [build]
     runs-on: ubuntu-latest
-    environment: pypi
+    environment: testpypi  # 使用专门的 testpypi 环境
     permissions:
       id-token: write  # 这里很重要，因为启用了PyPI白名单，需要将临时生成的token写到任务程序里
     steps:
@@ -56,8 +56,20 @@ jobs:
         repository-url: https://test.pypi.org/legacy/
         packages-dir: dist/
 
+  publish-pypi:  # 发布到正式 PyPI
+    needs: [build]
+    if: github.event_name == 'release' && github.event.action == 'published'  # 只在正式发布时执行
+    runs-on: ubuntu-latest
+    environment: pypi  # 使用专门的 pypi 环境
+    permissions:
+      id-token: write  # 这里很重要，因为启用了PyPI白名单，需要将临时生成的token写到任务程序里
+    steps:
+    - uses: actions/download-artifact@v4
+      with:
+        name: python-package-distributions
+        path: dist/
+
     - name: publish to PYPI
-      if: github.event_name == 'release' && github.event.action == 'published'  # 有了这句话才能只在发布的时候执行
       uses: pypa/gh-action-pypi-publish@v1.12.4
       with:
         packages-dir: dist/
