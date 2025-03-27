@@ -4,8 +4,16 @@ if [ -z "$1" ]; then
   exit 1
 fi
 
+
+if [ -z "$2" ]; then
+  echo "Missing Commit Message! Please provide a commit message like 'Update version'"
+  exit 1
+fi
+
 VERSION=$1
-COMMIT_MESSAGE="Publish version v$VERSION"
+
+TAG_MESSAGE="Publish version v$VERSION"
+COMMIT_MESSAGE=$2
 
 # 检测操作系统类型并使用正确的 sed 命令
 echo "[Updating version in pyproject.toml...]"
@@ -26,7 +34,7 @@ git push
 
 # add tag
 echo "[Adding tag...]"
-git tag -a "v$VERSION" -m "Publish version $VERSION"
+git tag -a "v$VERSION" -m "$TAG_MESSAGE"
 git push origin "v$VERSION"
 
 echo "[Done!] The version $VERSION has been published to TestPyPI."
