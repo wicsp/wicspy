@@ -1,27 +1,31 @@
+"""
+Bark CLI tool for sending notifications
+"""
+
 import argparse
 from wicspy.messaging.bark import send_message
 from loguru import logger
 
 
 def create_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="发送 Bark 通知消息")
-    parser.add_argument("title", help="消息标题")
-    parser.add_argument("content", help="消息内容")
-    parser.add_argument("--group", "-g", help="消息分组")
-    parser.add_argument("--sound", "-s", help="提示音")
-    parser.add_argument("--icon", "-i", help="图标 URL")
-    parser.add_argument("--url", "-u", help="点击消息后打开的 URL")
+    parser = argparse.ArgumentParser(description="Send notifications via Bark service")
+    parser.add_argument("title", help="Message title")
+    parser.add_argument("content", help="Message content")
+    parser.add_argument("--group", "-g", help="Message group")
+    parser.add_argument("--sound", "-s", help="Alert sound")
+    parser.add_argument("--icon", "-i", help="Icon URL")
+    parser.add_argument("--url", "-u", help="URL to open when clicking the message")
     parser.add_argument(
         "--level", 
         "-l",
         choices=["active", "timeSensitive", "passive"],
-        help="消息级别"
+        help="Message level"
     )
     return parser
 
 
 def bark():
-    """Bark 命令行工具入口点"""
+    """Bark CLI entry point"""
     parser = create_parser()
     args = parser.parse_args()
     
@@ -36,11 +40,11 @@ def bark():
             level=args.level,
         )
         if response.code == 200:
-            logger.info("消息发送成功")
+            logger.info("Message sent successfully")
         else:
-            logger.error(f"消息发送失败: {response.message}")
+            logger.error(f"Failed to send message: {response.message}")
     except Exception as e:
-        logger.error(f"发送消息时发生错误: {e}")
+        logger.error(f"Error sending message: {e}")
         raise SystemExit(1)
 
 

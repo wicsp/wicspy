@@ -895,16 +895,13 @@ wheels = [
 
 [[package]]
 name = "wicspy"
-version = "0.1.8"
+version = "0.1.10"
 source = { editable = "." }
 dependencies = [
-    { name = "beautifulsoup4" },
-    { name = "httpx", extra = ["socks"] },
     { name = "loguru" },
     { name = "pydantic" },
     { name = "python-dotenv" },
     { name = "requests" },
-    { name = "rich" },
 ]
 
 [package.optional-dependencies]
@@ -917,12 +914,23 @@ dev = [
     { name = "pytest-cov" },
     { name = "ruff" },
 ]
+full = [
+    { name = "beautifulsoup4" },
+    { name = "httpx", extra = ["socks"] },
+    { name = "rich" },
+]
+web = [
+    { name = "beautifulsoup4" },
+    { name = "httpx", extra = ["socks"] },
+]
 
 [package.metadata]
 requires-dist = [
-    { name = "beautifulsoup4", specifier = ">=4.12.0" },
+    { name = "beautifulsoup4", marker = "extra == 'full'", specifier = ">=4.13.3" },
+    { name = "beautifulsoup4", marker = "extra == 'web'", specifier = ">=4.13.3" },
     { name = "black", marker = "extra == 'dev'", specifier = ">=23.0.0" },
-    { name = "httpx", extras = ["socks"], specifier = ">=0.24.0" },
+    { name = "httpx", extras = ["socks"], marker = "extra == 'full'", specifier = ">=0.24.0" },
+    { name = "httpx", extras = ["socks"], marker = "extra == 'web'", specifier = ">=0.24.0" },
     { name = "loguru", specifier = ">=0.7.3" },
     { name = "mypy", marker = "extra == 'dev'", specifier = ">=1.0.0" },
     { name = "pdoc", marker = "extra == 'dev'", specifier = ">=15.0.1" },
@@ -932,10 +940,10 @@ requires-dist = [
     { name = "pytest-cov", marker = "extra == 'dev'", specifier = ">=4.0.0" },
     { name = "python-dotenv", specifier = ">=1.0.0" },
     { name = "requests", specifier = ">=2.32.3" },
-    { name = "rich", specifier = ">=13.0.0" },
+    { name = "rich", marker = "extra == 'full'", specifier = ">=13.0.0" },
     { name = "ruff", marker = "extra == 'dev'", specifier = ">=0.1.0" },
 ]
-provides-extras = ["dev"]
+provides-extras = ["dev", "web", "full"]
 
 [[package]]
 name = "win32-setctime"

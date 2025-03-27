@@ -1,7 +1,6 @@
 """
-Bark 消息发送模块 - 通过 Bark 服务发送通知消息
+Bark Message Module - Send notifications through Bark service
 """
-
 
 from typing import Dict, Optional, Any
 import requests
@@ -12,26 +11,27 @@ from wicspy.config import get_config
 
 
 class BarkResponse(BaseModel):
-    """Bark 响应模型"""
-    code: int = Field(..., description="响应代码")
-    message: str = Field(..., description="响应消息")
-    data: Optional[Dict[str, Any]] = Field(None, description="响应数据")
+    """Bark response model"""
+    code: int = Field(..., description="Response code")
+    message: str = Field(..., description="Response message")
+    data: Optional[Dict[str, Any]] = Field(None, description="Response data")
 
 
 class BarkClient:
-    """Bark 客户端"""
+    """Bark client"""
     
     def __init__(self, bark_id: Optional[str] = None):
         """
-        初始化 Bark 客户端
+        Initialize Bark client
         
         Args:
-            bark_id: Bark ID，如果为 None，将从配置中获取
+            bark_id: Bark ID, if None, will be retrieved from config
         """
         self.bark_id = bark_id or get_config("bark_id")
         if not self.bark_id:
             raise ValueError(
-                "未设置 BARK_ID。请添加环境变量或通过配置设置，例如：'export BARK_ID=your_bark_id'"
+                "BARK_ID not set. Please set it via environment variable or config, "
+                "e.g., 'export BARK_ID=your_bark_id'"
             )
         
         self.base_url = f"https://api.day.app/{self.bark_id}"
@@ -47,19 +47,19 @@ class BarkClient:
         level: Optional[str] = None,
     ) -> BarkResponse:
         """
-        发送 Bark 消息
+        Send Bark message
         
         Args:
-            title: 消息标题
-            content: 消息内容
-            group: 消息分组
-            sound: 提示音
-            icon: 图标 URL
-            url: 点击消息后打开的 URL
-            level: 消息级别 (active, timeSensitive, passive)
+            title: Message title
+            content: Message content
+            group: Message group
+            sound: Alert sound
+            icon: Icon URL
+            url: URL to open when clicking the message
+            level: Message level (active, timeSensitive, passive)
             
         Returns:
-            BarkResponse: Bark 响应对象
+            BarkResponse: Bark response object
         """
         endpoint = f"{self.base_url}/{title}/{content}"
         
@@ -76,28 +76,28 @@ class BarkClient:
             params["level"] = level
             
         try:
-            logger.debug(f"发送 Bark 消息: {title} > {content}")
+            logger.debug(f"Sending Bark message: {title} > {content}")
             response = requests.post(endpoint, params=params, timeout=get_config("timeout", 30))
             response.raise_for_status()
             
-            logger.info(f"Bark 消息发送成功: {title}")
+            logger.info(f"Bark message sent successfully: {title}")
             
             return BarkResponse(**response.json())
         except requests.exceptions.RequestException as e:
-            logger.error(f"Bark 消息发送失败: {title} > {content}, 异常: {e}")
+            logger.error(f"Failed to send Bark message: {title} > {content}, error: {e}")
             raise
 
 
-# 创建默认客户端实例
+# Create default client instance
 _default_client: Optional[BarkClient] = None
 
 
 def get_client() -> BarkClient:
     """
-    获取默认的 Bark 客户端实例
+    Get default Bark client instance
     
     Returns:
-        BarkClient: Bark 客户端实例
+        BarkClient: Bark client instance
     """
     global _default_client
     if _default_client is None:
@@ -116,20 +116,20 @@ def send_message(
     client: Optional[BarkClient] = None,
 ) -> BarkResponse:
     """
-    发送 Bark 消息
+    Send Bark message
     
     Args:
-        title: 消息标题
-        content: 消息内容
-        group: 消息分组
-        sound: 提示音
-        icon: 图标 URL
-        url: 点击消息后打开的 URL
-        level: 消息级别 (active, timeSensitive, passive)
-        client: 自定义 Bark 客户端，如果为 None 则使用默认客户端
+        title: Message title
+        content: Message content
+        group: Message group
+        sound: Alert sound
+        icon: Icon URL
+        url: URL to open when clicking the message
+        level: Message level (active, timeSensitive, passive)
+        client: Custom Bark client, if None, use default client
         
     Returns:
-        BarkResponse: Bark 响应对象
+        BarkResponse: Bark response object
     """
     if client is None:
         client = get_client()

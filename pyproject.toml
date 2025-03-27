@@ -1,6 +1,6 @@
 [project]
 name = "wicspy"
-version = "0.1.10"
+version = "0.1.11"
 description = "A comprehensive Python utilities library for various tasks"
 readme = "README.md"
 authors = [
@@ -11,10 +11,8 @@ dependencies = [
     "loguru>=0.7.3",
     "requests>=2.32.3",
     "pydantic>=2.0.0",
-    "httpx[socks]>=0.24.0", # 现代化HTTP客户端，支持异步
-    "beautifulsoup4>=4.12.0", # 网页解析
-    "rich>=13.0.0", # 终端美化
     "python-dotenv>=1.0.0", # 环境变量管理
+
 ]
 license = {text = "MIT"}
 classifiers = [
@@ -37,9 +35,19 @@ dev = [
     "black>=23.0.0",
     "pdoc>=15.0.1",
 ]
+web = [
+    "httpx[socks]>=0.24.0",  # 现代化HTTP客户端，支持异步
+    "beautifulsoup4>=4.13.3",
+]
+full = [
+    "rich>=13.0.0",  # 终端美化
+    "httpx[socks]>=0.24.0",  # 现代化HTTP客户端，支持异步
+    "beautifulsoup4>=4.13.3",
+]
 
 [project.scripts]
 bark = "wicspy.scripts.bark:bark"
+radiation = "wicspy.scripts.radiation:radiation"
 
 [build-system]
 requires = ["hatchling"]

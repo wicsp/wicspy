@@ -10,5 +10,3 @@ wheels/
 .venv
 
 .DS_Store
-
-upload_pypi.sh

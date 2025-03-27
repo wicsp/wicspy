@@ -2,10 +2,15 @@
 网页抓取模块 - 提供网页内容抓取和解析功能
 """
 
+try:
+    import httpx
+    from bs4 import BeautifulSoup
+except ImportError:
+    raise ImportError(
+        "To use the web module, you need to install the wicspy[web] extra.\n"
+    )
 import re
 from typing import Dict, List, Optional, Union, Any
-import httpx
-from bs4 import BeautifulSoup
 from pydantic import BaseModel, Field
 from loguru import logger
 
