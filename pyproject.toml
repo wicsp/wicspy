@@ -1,6 +1,6 @@
 [project]
 name = "wicspy"
-version = "0.1.4"
+version = "0.1.7"
 description = "A comprehensive Python utilities library for various tasks"
 readme = "README.md"
 authors = [
